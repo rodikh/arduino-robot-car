@@ -1,16 +1,10 @@
-#include <Servo.h> 
 #include "Arduino.h"
+#include "Arm.h"
 
-class Arm {
-    public:
-        void init () {
-            myservo.attach(6);
-            myservo.write(90);
-        }
-        void to(int deg) {
-          myservo.write(deg);
-        }
-    private:
-        Servo myservo;
-};
-
+void Arm::init () {
+    myservo.attach(6);
+    myservo.write(90);
+}
+void Arm::to(int deg) {
+  myservo.write(deg);
+}

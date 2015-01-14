@@ -1,48 +1,37 @@
-
-#include "Engines.cpp"
-#include "Eyes.cpp"
-#include "Arm.cpp"
+#include "Car.h"
   
-class Car {
-   public:
-      void initAuto () {
-          stop();
-          arm.init();
-      }
-      void loop () {
-          int dist = eyes.scan();
-          arm.to(dist);
-          if (dist < 30) {
-            left();
-          } else {
-            forward();
-          }
-      }
-      void forward (int speed = 255) {
-          engines.leftForward(speed);
-          engines.rightForward(speed);
-      }
-      void stop () {
-          engines.leftStop();
-          engines.rightStop();
-      }
-      void backward (int speed = 255) {
-          engines.leftBackward(speed);
-          engines.rightBackward(speed);
-      }
-      
-      void left (int speed = 255) {
-          engines.leftBackward(speed);
-          engines.rightForward(speed);
-      }
-      
-      void right (int speed = 255) {
-          engines.leftForward(speed);
-          engines.rightBackward(speed);
-      }
-  private:
-      Engines engines;
-      Eyes eyes;
-      Arm arm;
-};
+void Car::initAuto () {
+    stop();
+    arm.init();
+}
+void Car::loop () {
+    int dist = eyes.scan();
+    arm.to(dist);
+    if (dist < 30) {
+      left();
+    } else {
+      forward();
+    }
+}
+void Car::forward (int speed) {
+    engines.leftForward(speed);
+    engines.rightForward(speed);
+}
+void Car::stop () {
+    engines.leftStop();
+    engines.rightStop();
+}
+void Car::backward (int speed) {
+    engines.leftBackward(speed);
+    engines.rightBackward(speed);
+}
 
+void Car::left (int speed) {
+    engines.leftBackward(speed);
+    engines.rightForward(speed);
+}
+
+void Car::right (int speed) {
+    engines.leftForward(speed);
+    engines.rightBackward(speed);
+}

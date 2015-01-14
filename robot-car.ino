@@ -1,5 +1,5 @@
 #include <Servo.h> 
-#include "Car.cpp"
+#include "Car.h"
 
 unsigned long interval=50;     // the time we need to wait
 unsigned long previousMillis=0;  // millis() returns an unsigned long.
