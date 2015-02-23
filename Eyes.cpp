@@ -26,7 +26,6 @@ int Eyes::echo () {
     long duration, distance;
     duration = pulseIn(echoPin, HIGH);
     distance = (duration/2) / 29.1;
-    
     if (distance >= 200 || distance <= 0){
         return 201;
     } 

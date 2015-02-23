@@ -5,9 +5,11 @@ void Car::initAuto () {
     arm.init();
 }
 void Car::loop () {
-    int dist = eyes.scan();
+    int dist = (int) eyes.scan();
+    Serial.print("Eyes: ");
+    Serial.println(dist);
     arm.to(dist);
-    if (dist < 30) {
+    if (dist < 15) {
       left();
     } else {
       forward();
