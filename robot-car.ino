@@ -15,56 +15,56 @@ void setup() {
     Serial.println("Car Ready!");
     bts.begin(9600);
     bts.println("Comms online");
-    
+
     car.initAuto();
 }
 
 void loop() {
     if (bts.available()) {
         BluetoothData = bts.read();
-        switch ( BluetoothData ) {
-            case 119 : 
-              car.forward();  
-              bts.println("Moving Forward");
-              break;
-            case 115 : 
-              car.stop();
-              break;
+        switch (BluetoothData) {
+            case 119 :
+                car.forward();
+                bts.println("Moving Forward");
+                break;
+            case 115 :
+                car.stop();
+                break;
             case 97 :
-              car.left();
-              break;
+                car.left();
+                break;
             case 100 :
-              car.right();
-              break;
+                car.right();
+                break;
             case 120 :
-              car.backward();
-              break;
-              
-            case 121 :
-              car.arm.up();
-              break;
-            case 104 :
-              car.arm.down();
-              break;
-            case 103 :
-              car.arm.left();
-              break;
-            case 106 :
-              car.arm.right();
-              break;
-            case 116 :
-              car.arm.open();
-              break;
-            case 117 :
-              car.arm.close();
-              break;
-            case 110 :
-              car.arm.stop();
-              break;
+                car.backward();
+                break;
 
-            default : 
-              break;           
-          }
+            case 121 :
+                car.arm.up();
+                break;
+            case 104 :
+                car.arm.down();
+                break;
+            case 103 :
+                car.arm.left();
+                break;
+            case 106 :
+                car.arm.right();
+                break;
+            case 116 :
+                car.arm.open();
+                break;
+            case 117 :
+                car.arm.close();
+                break;
+            case 110 :
+                car.arm.stop();
+                break;
+
+            default :
+                break;
+        }
 
         bts.print("char ");
         bts.println(BluetoothData);

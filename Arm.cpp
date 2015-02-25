@@ -23,34 +23,34 @@ void Arm::to(int nbdeg, int npdeg) {
 }
 
 void Arm::left() {
-    bdeg+=5;
+    bdeg += 5;
     if (bdeg > 180) {
-      bdeg = 180;
+        bdeg = 180;
     }
     base.write(bdeg);
 }
 
 void Arm::right() {
-    bdeg-=5;
+    bdeg -= 5;
     if (bdeg < 0) {
-      bdeg = 0;
+        bdeg = 0;
     }
     base.write(bdeg);
 }
 
 
 void Arm::up() {
-    pdeg+=5;
+    pdeg += 5;
     if (pdeg > 180) {
-      pdeg = 180;
+        pdeg = 180;
     }
     pitch.write(pdeg);
 }
 
 void Arm::down() {
-    pdeg-=5;
+    pdeg -= 5;
     if (pdeg < 0) {
-      pdeg = 0;
+        pdeg = 0;
     }
     pitch.write(pdeg);
 }
