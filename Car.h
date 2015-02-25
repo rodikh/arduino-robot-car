@@ -18,9 +18,10 @@ public:
 
     void right(int speed = 255);
 
+    Arm arm;
+    
 private:
     Engines engines;
     Eyes eyes;
-    Arm arm;
 };
 

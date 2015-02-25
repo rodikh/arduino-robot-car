@@ -7,8 +7,6 @@ void Car::initAuto() {
 
 void Car::loop() {
     int dist = (int) eyes.scan();
-    Serial.print("Eyes: ");
-    Serial.println(dist);
     arm.to(dist);
     if (dist < 15) {
         left();

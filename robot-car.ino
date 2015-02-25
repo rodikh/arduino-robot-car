@@ -2,7 +2,7 @@
 #include "Car.h"
 #include <SoftwareSerial.h>
 
-SoftwareSerial Genotronex(10, 11); // RX, TX
+SoftwareSerial bts(9, 10); // RX, TX
 int BluetoothData;
 
 unsigned long interval = 50;     // the time we need to wait
@@ -12,27 +12,67 @@ Car car;
 
 void setup() {
     Serial.begin(9600);
-    car.initAuto();
     Serial.println("Car Ready!");
+    bts.begin(9600);
+    bts.println("Comms online");
+    
+    car.initAuto();
 }
 
 void loop() {
+    if (bts.available()) {
+        BluetoothData = bts.read();
+        switch ( BluetoothData ) {
+            case 119 : 
+              car.forward();  
+              bts.println("Moving Forward");
+              break;
+            case 115 : 
+              car.stop();
+              break;
+            case 97 :
+              car.left();
+              break;
+            case 100 :
+              car.right();
+              break;
+            case 120 :
+              car.backward();
+              break;
+              
+            case 121 :
+              car.arm.up();
+              break;
+            case 104 :
+              car.arm.down();
+              break;
+            case 103 :
+              car.arm.left();
+              break;
+            case 106 :
+              car.arm.right();
+              break;
+            case 116 :
+              car.arm.open();
+              break;
+            case 117 :
+              car.arm.close();
+              break;
+            case 110 :
+              car.arm.stop();
+              break;
 
-    if (Genotronex.available()) {
-        BluetoothData = Genotronex.read();
-        if (BluetoothData == '1') {   // if number 1 pressed ....
-            car.forward();
-        }
-        if (BluetoothData == '0') {// if number 0 pressed ....
-            car.stop();
-        }
+            default : 
+              break;           
+          }
+
+        bts.print("char ");
+        bts.println(BluetoothData);
+    } else {
+//        Serial.print("Bluetooth not available!! ");
+//        Serial.println(bts.available());
     }
-    delay(100);// prepare for next data ...
 
-//   if ((unsigned long)(millis() - previousMillis) >= interval) {
-//      previousMillis = millis();
-//      car.loop();
-//      car.forward();
-//   }
+    delay(100);
 }
 
